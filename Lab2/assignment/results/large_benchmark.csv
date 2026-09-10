@@ -1,0 +1,4 @@
+"experiment","method","elapsed_seconds","stored_result_bytes","nonzero_entries","time_gain_over_loop","time_reduction_percent","memory_reduction_from_dense_percent"
+"3000 x 5000 thresholded distances","nested loop",1.702,120000216,3770166,1,0,0
+"3000 x 5000 thresholded distances","vectorized dense",0.212999999999999,120000216,3770166,7.99061032863853,87.4853113983549,0
+"3000 x 5000 thresholded distances","vectorized sparse",0.234,45263496,3770166,7.27350427350427,86.2514688601645,62.2804878951218
