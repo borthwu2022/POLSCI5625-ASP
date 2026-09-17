@@ -1,0 +1,5 @@
+"n","method","median_seconds","gain_over_nested"
+3109,"nested",9.529009588,1
+3109,"vectorized",0.105748348,90.1102453912566
+3109,"foreach_sequential",0.782802258,12.1729459651099
+3109,"foreach_parallel",1.232479721,7.73157515343816
