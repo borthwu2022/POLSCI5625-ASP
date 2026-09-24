@@ -1,0 +1,30 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# R Markdown
+*.knit.md
+*.utf8.md
+*_cache/
+*_files/
+
+# LaTeX / Beamer / Pandoc
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
