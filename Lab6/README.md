@@ -72,34 +72,34 @@ simulation counts on the fitting procedure.
 
 Let $Z_i \in \{1,2,3\}$ denote the unobserved component membership. The model is
 
-$$
+```math
 P(Z_i=k)=\pi_k,
 \qquad
 X_i \mid Z_i=k \sim N(\mu_k,\sigma^2),
 \qquad
 \sum_{k=1}^{3}\pi_k=1.
-$$
+```
 
 Write the parameters as $\theta=(\boldsymbol{\pi},\boldsymbol{\mu},\sigma^2)$,
 with $\pi_k>0$ and $\sigma^2>0$. The normal density is
 
-$$
+```math
 \phi(x;\mu,\sigma^2)
 =
 \frac{1}{\sqrt{2\pi\sigma^2}}
 \exp\left[-\frac{(x-\mu)^2}{2\sigma^2}\right].
-$$
+```
 
 The observed-data log-likelihood is
 
-$$
+```math
 \ell(\theta)
 =
 \sum_{i=1}^{n}
 \log\left[
 \sum_{k=1}^{3}\pi_k\,\phi(x_i;\mu_k,\sigma^2)
 \right].
-$$
+```
 
 The logarithm is outside the component sum. This is different from the
 expected complete-data log-likelihood $Q$ that the M-step maximizes with fixed
@@ -137,19 +137,19 @@ missing files and directs you to `R/gendata.r`.
 Write `e_step(x, proportions, means, variance)`. At iteration $t$, calculate
 the responsibilities using the current parameter estimates:
 
-$$
+```math
 \gamma_{ik}^{(t)}
 =
 P(Z_i=k\mid x_i,\theta^{(t)})
 =
 \frac{\pi_k^{(t)}\phi(x_i;\mu_k^{(t)},\sigma^{2(t)})}
 {\sum_{h=1}^{3}\pi_h^{(t)}\phi(x_i;\mu_h^{(t)},\sigma^{2(t)})}.
-$$
+```
 
 Implement this calculation on the log scale. Suppressing the iteration
 superscript for readability, compute
 
-$$
+```math
 \begin{aligned}
 a_{ik} &= \log\pi_k + \log\phi(x_i;\mu_k,\sigma^2), \\
 m_i &= \max_{1\leq k\leq3} a_{ik}, \\
@@ -157,7 +157,7 @@ L_i &= m_i + \log\left[\sum_{k=1}^{3}\exp(a_{ik}-m_i)\right], \\
 \gamma_{ik} &= \exp(a_{ik}-L_i), \\
 \ell(\theta) &= \sum_{i=1}^{n}L_i.
 \end{aligned}
-$$
+```
 
 In R, `dnorm(x, mean, sd, log = TRUE)` returns the log normal density directly.
 Use `sd = sqrt(variance)`.
@@ -165,11 +165,11 @@ Use `sd = sqrt(variance)`.
 Return an $n \times 3$ responsibility matrix and the observed-data
 log-likelihood. Check that
 
-$$
+```math
 \gamma_{ik}\geq0,
 \qquad
 \sum_{k=1}^{3}\gamma_{ik}=1.
-$$
+```
 
 Subtracting the row maximum avoids underflow when densities are very small.
 Unlike K-means, each observation contributes fractionally to multiple classes.
@@ -179,17 +179,17 @@ Unlike K-means, each observation contributes fractionally to multiple classes.
 Write `m_step(x, responsibilities)`. Hold the E-step responsibilities fixed
 and maximize
 
-$$
+```math
 Q(\theta\mid\theta^{(t)})
 =
 \sum_{i=1}^{n}\sum_{k=1}^{3}
 \gamma_{ik}^{(t)}
 \left[\log\pi_k+\log\phi(x_i;\mu_k,\sigma^2)\right].
-$$
+```
 
 The resulting updates are
 
-$$
+```math
 \begin{aligned}
 N_k^{(t)} &= \sum_{i=1}^{n}\gamma_{ik}^{(t)}, \\
 \pi_k^{(t+1)} &= \frac{N_k^{(t)}}{n}, \\
@@ -198,7 +198,7 @@ N_k^{(t)} &= \sum_{i=1}^{n}\gamma_{ik}^{(t)}, \\
 \sum_{i=1}^{n}\sum_{k=1}^{3}
 \gamma_{ik}^{(t)}\left(x_i-\mu_k^{(t+1)}\right)^2.
 \end{aligned}
-$$
+```
 
 Use the **updated means** in the variance formula. Pool the weighted residual
 sum of squares across all components and divide by $n$, not $n-1$ or $n-3$.
@@ -216,17 +216,17 @@ iteration count, and convergence flag.
 
 Let $\ell^{(t)}=\ell(\theta^{(t)})$. Use at most 2000 iterations and stop when
 
-$$
+```math
 \left|\ell^{(t+1)}-\ell^{(t)}\right|
 \leq
 10^{-10}\left(1+\left|\ell^{(t)}\right|\right).
-$$
+```
 
 Exact EM updates should satisfy
 
-$$
+```math
 \ell^{(t+1)}\geq\ell^{(t)}.
-$$
+```
 
 Check all differences separately from the stopping rule, allowing a numerical
 tolerance of $10^{-8}$:
@@ -264,25 +264,25 @@ Component numbers are arbitrary. Order each final fit by increasing mean,
 reordering its proportions and responsibility columns with the same permutation,
 before comparing parameters. Compare aligned estimates with
 
-$$
+```math
 \boldsymbol{\pi}=(0.25,0.50,0.25),
 \qquad
 \boldsymbol{\mu}=(-3,0,4),
 \qquad
 \sigma^2=1.
-$$
+```
 
 Choose the largest final likelihood among the five converged fits for each $n$. Tiny likelihood gaps can reflect the stopping tolerance.
 Agreement across starts does not establish a global maximum. For start
 $s\in\{1,\ldots,5\}$, the runner calculates the likelihood gap within each dataset:
 
-$$
+```math
 \operatorname{gap}_s
 =
 \max_{1\leq r\leq5}\ell(\widehat\theta_r)
 -
 \ell(\widehat\theta_s).
-$$
+```
 
 A gap of zero identifies a fit with the largest final likelihood among the five
 starts.
