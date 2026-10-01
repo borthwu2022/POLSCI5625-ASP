@@ -517,18 +517,18 @@ For $t=0,1,2,\ldots$, repeat the following steps.
 
 1. **E-step.** Compute all posterior responsibilities:
 
-   $$
-   \gamma_{ik}^{(t)}
-   =
-   \frac{
-   \pi_k^{(t)}
-   \phi\left(x_i;\mu_k^{(t)},(\sigma^2)^{(t)}\right)
-   }{
-   \sum_{j=1}^3
-   \pi_j^{(t)}
-   \phi\left(x_i;\mu_j^{(t)},(\sigma^2)^{(t)}\right)
-   }.
-   $$
+```math
+\gamma_{ik}^{(t)}
+=
+\frac{
+\pi_k^{(t)}
+\phi\left(x_i;\mu_k^{(t)},(\sigma^2)^{(t)}\right)
+}{
+\sum_{j=1}^3
+\pi_j^{(t)}
+\phi\left(x_i;\mu_j^{(t)},(\sigma^2)^{(t)}\right)
+}.
+```
 
 2. **M-step.** Use the responsibilities to update
    $\pi_k^{(t+1)}$, $\mu_k^{(t+1)}$, and $(\sigma^2)^{(t+1)}$ with
@@ -540,13 +540,13 @@ For $t=0,1,2,\ldots$, repeat the following steps.
 4. **Stopping rule.** Stop when the log-likelihood change is sufficiently
    small, for example,
 
-   $$
-   \left|
-   \ell(\theta^{(t+1)})
-   -\ell(\theta^{(t)})
-   \right|
-   <\varepsilon.
-   $$
+```math
+\left|
+\ell(\theta^{(t+1)})
+-\ell(\theta^{(t)})
+\right|
+<\varepsilon.
+```
 
 A relative stopping rule is often more meaningful when the magnitude of the
 log-likelihood is large:
