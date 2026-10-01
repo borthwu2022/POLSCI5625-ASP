@@ -277,7 +277,7 @@ Agreement across starts does not establish a global maximum. For start
 $s\in\{1,\ldots,5\}$, the runner calculates the likelihood gap within each dataset:
 
 ```math
-\operatorname{gap}_s
+\mathrm{gap}_s
 =
 \max_{1\leq r\leq5}\ell(\widehat\theta_r)
 -
