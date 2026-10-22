@@ -22,6 +22,8 @@ POLSCI5625 Applied Statistical Programming/
 |   |-- ...
 |-- Lab6/
 |   |-- ...
+|-- Lab8/
+|   |-- ...
 |-- ...
 |-- README.md
 ```
@@ -75,6 +77,14 @@ sizes and verify that the observed-data log-likelihood does not decrease.
 
 See [Lab 6 instructions](Lab6/README.md) for the in-class exercise.
 
+### Lab 8: Shingles, MinHash, and locality-sensitive hashing
+
+Lab 8 compares 2-, 4-, and 10-character shingle sets for BBC News articles,
+implements 4-shingle MinHash and LSH, and calculates average occupied-bucket
+sizes and candidate counts for different band sizes.
+
+See [Lab 8 instructions](Lab8/README.md) for the in-class exercise.
+
 ## Folder conventions
 
 Each lab follows the same general organization:
@@ -91,7 +101,7 @@ Each lab follows the same general organization:
 - The `Matrix` package for Lab 2
 - The `boot` package for Lab 3
 - The `foreach`, `doParallel`, and `microbenchmark` packages for Lab 4
-- Labs 5 and 6 use base R and the included `stats` package; no additional packages
+- Labs 5, 6, and 8 use base R and the included `stats` package; no additional packages
 
 ## Running a script
 
